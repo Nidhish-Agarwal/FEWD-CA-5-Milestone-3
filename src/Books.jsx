@@ -3,7 +3,7 @@ import './App.css';
 
 // Truncate text to a specified number of words per line
 const truncateText = (text, maxWordsPerLine) => {
-  const words = text.split(' ');
+  const words = text.split(' '); 
   const lines = [];
   for (let i = 0; i < words.length; i += maxWordsPerLine) {
     lines.push(words.slice(i, i + maxWordsPerLine).join(' '));
@@ -21,12 +21,20 @@ const BooksList = ({ books }) => {
       {books.map((book) => (
         <div key={book.id} className="book-item">
           {/* Task 5.1: Display the book's thumbnail */}
+          <img src={book.imageLinks.thumbnail} alt="Book-image" />
           <p
+          style={{color:'red'}}
             dangerouslySetInnerHTML={{
               __html: truncateText(book.title, 3),
             }}
           />
           {/* Task 5.2: Use truncateText to display the book's authors */}
+          <p
+          style={{color:'red'}}
+            dangerouslySetInnerHTML={{
+              __html: truncateText(book.authors.join(' '), 3),
+            }}
+          />
           <p className="free">Free</p>
         </div>
       ))}
